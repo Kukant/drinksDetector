@@ -1,0 +1,30 @@
+{
+	"manifest_version": 2,
+	"name": "Party Photos Cutifier",
+	"version": "0.1.1"
+	"default_locale": "en",
+	"description": "Tool to convert ugly photos of alcohol to cute photos of kittens",
+	"icons": { 
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png" 
+	},
+	"browser_action": {
+		"default_title": "Party Photos Cutifier",
+		"default_popup": "result.html"
+	},
+	"author": "CIRACU developers",
+	"commands": {
+		"_execute_browser_action": {
+			"suggested_key": {
+				"windows": "Ctrl+Shift+A",
+				"mac": "Command+Shift+A",
+				"chromeos": "Ctrl+Shift+A",
+				"linux": "Ctrl+Shift+A"
+			}
+		}
+	},
+	"homepage_url": "https://github.com/Kukant/drinksDetector",
+	"offline_enabled": true,
+	"version_name": "0.1.1"
+}
