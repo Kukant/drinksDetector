@@ -2,6 +2,8 @@ import cv2
 import os
 from math import fabs
 
+from beer_learning.detector import BeerDetector
+
 kittens = []
 
 
@@ -43,16 +45,15 @@ def replace_drinks(detected_drinks, input_img):
 
 if __name__ == "__main__":
     load_kittens()
-    input_img = cv2.imread("matej.jpg")
     kittens_folder = "kittens"
-    # compute this using the NN
-    detected_drinks = [
-        # (x1, y1, x2, y2)
-        (100, 100, 1000, 1000),
-        (500, 100, 1000, 300),
-    ]
-
-    replaced = replace_drinks(detected_drinks, input_img)
-    cv2.imwrite("output.jpg", replaced)
+    detector = BeerDetector("beer_learning/models/model6.h5")
+    for filename in [x for x in os.listdir("beer_learning/validation") if x.endswith(".jpg")]:
+        file_path = os.path.join("beer_learning/validation", filename)
+        input_img = cv2.imread(file_path)
+        # compute this using the NN
+        detected_drinks = detector.get_beer_positions(input_img)
+        replaced = replace_drinks(detected_drinks, input_img)
+        cv2.imshow("output", replaced)
+        cv2.waitKey(0)
 
 
