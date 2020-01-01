@@ -1,5 +1,12 @@
-// We redeclare this each time main.js is called from the background, therefore we can't use let there
+var loaded = (loaded === true);
 var screenshotPort = chrome.extension.connect({name: "screenshot"});
+
+if (!loaded) {
+    loadModel().then(() => {
+        console.log("loaded");
+    });
+    loaded = true;
+}
 
 screenshotPort.postMessage({request: "take"});
 
@@ -42,6 +49,10 @@ screenshotPort.onMessage.addListener(function (msg) {
     modal.appendChild(close);
     document.body.appendChild(modal);
 });
+
+async function loadModel() {
+    //model = await tf.loadLayersModel('');
+}
 
 function cutify(img) {
     // Do some magic stuff with the image there

@@ -2,10 +2,8 @@ chrome.browserAction.onClicked.addListener(browserActionHandler);
 
 chrome.extension.onConnect.addListener(messageRequestHandler);
 
-function browserActionHandler(info, tab){
-    chrome.tabs.executeScript({
-        file: 'js/main.js'
-    });
+function browserActionHandler(info, tab) {
+    chrome.tabs.executeScript({ file: 'js/main.js' });
 }
 
 function messageRequestHandler(port) {

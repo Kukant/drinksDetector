@@ -2,10 +2,10 @@
 	"manifest_version": 2,
 	"name": "Party Photos Cutifier",
 	"version": "0.1.1",
-	"description": "Tool to convert ugly photos of alcohol to cute photos of kittens",
+	"description": "Tool to hide ugly photos of alcohol behind cute photos of kittens.",
 	"background": {
 		"persistent": true,
-		"scripts": ["js/background.js"]
+		"scripts": ["js/background.js", "js/tf.min.js"]
 	},
 	"icons": { 
 		"48": "icons/icon48.png",
