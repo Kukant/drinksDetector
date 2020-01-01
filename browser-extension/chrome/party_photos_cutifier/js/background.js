@@ -20,19 +20,5 @@ function messageRequestHandler(port) {
                 });
             }
         });
-    } else if (port.name === "popup") {
-        port.onMessage.addListener(function (msg) {
-            if (msg.request === "open") {
-                chrome.windows.create({
-                    'url': 'cute.html',
-                    'type': 'popup',
-                    'state': 'maximized'
-                }, function(win) {
-                    chrome.tabs.sendMessage(win.tabs[0].id, { request: 'update' });
-
-                    //port.postMessage(win);
-                });
-            }
-        });
     }
 }

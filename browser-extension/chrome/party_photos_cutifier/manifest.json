@@ -11,14 +11,10 @@
 		"48": "icons/icon48.png",
 		"128": "icons/icon128.png" 
 	},
-	"content_scripts": [{
-		"matches": ["*://*/*"],
-		"js": ["js/content.js"]
-	}],
 	"browser_action": {
 		"default_title": "Party Photos Cutifier"
 	},
-	"permissions": ["activeTab", "tabs", "<all_urls>"],
+	"permissions": ["activeTab"],
 	"author": "CIRACU developers",
 	"commands": {
 		"_execute_browser_action": {
