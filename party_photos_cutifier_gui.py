@@ -1,24 +1,14 @@
 import cv2
 import os
-import sys
 import base64
 import numpy
 import easygui
 import argparse
-from utils import block_print
-from utils import replace_drinks
-from utils import enable_print
+
+from utils import replace_drinks, get_beer_detector
 
 parser = argparse.ArgumentParser(description='Change ugly photos of beer into cute photos of kittens!')
 parser.add_argument('-v', '--verbose', help='verbose output', action='store_true')
-
-
-def get_beer_detector(verbose):
-    block_print(verbose)
-    from beer_learning.detector import BeerDetector
-    beer_detector = BeerDetector()
-    enable_print(verbose)
-    return beer_detector
 
 
 def read_image_interactive():
@@ -41,10 +31,11 @@ if __name__ == "__main__":
     if not verbose:
         os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+    print("Loading model...")
     detector = get_beer_detector(verbose)
     input_img = read_image_interactive()
     if input_img is None:
-        print("bye...")
+        print("Bye...")
         exit()
 
     # compute this using the NN

@@ -1,5 +1,6 @@
 import cv2
 import os
+import sys
 from math import fabs
 
 kittens = []
@@ -56,17 +57,25 @@ def replace_drinks(detected_drinks, input_img):
 
     return input_img
 
-def block_print(verbose):
+
+def _block_print(verbose):
     if not verbose:
         sys.stdout = open(os.devnull, 'w')
         sys.stderr = open(os.devnull, 'w')
 
 
-def enable_print(verbose):
+def _enable_print(verbose):
     if not verbose:
         sys.stdout = sys.__stdout__
         sys.stderr = sys.__stderr__
 
+
+def get_beer_detector(verbose):
+    _block_print(verbose)
+    from beer_learning.detector import BeerDetector
+    beer_detector = BeerDetector()
+    _enable_print(verbose)
+    return beer_detector
+
+
 load_kittens()
-
-
