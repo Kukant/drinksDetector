@@ -11,7 +11,8 @@ import os
 
 
 class BeerDetector:
-    def __init__(self, model_path):
+    def __init__(self, model_path=os.path.join("beer_learning", "models", "resnet-model_latest.h5")):
+        print("Loading the model...")
         model = models.load_model(model_path, backbone_name='resnet50')
         self.model = models.convert_model(model)
 
