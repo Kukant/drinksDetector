@@ -1,18 +1,8 @@
-var loaded = (loaded === true);
 var screenshotPort = chrome.extension.connect({name: "screenshot"});
-
-if (!loaded) {
-    loadModel().then(() => {
-        console.log("loaded");
-    });
-    loaded = true;
-}
 
 screenshotPort.postMessage({request: "take"});
 
 screenshotPort.onMessage.addListener(function (msg) {
-    let cuteImg = cutify(msg);
-
     let modal = document.createElement('div');
     modal.id = 'ppc-result';
     modal.style = `
@@ -25,7 +15,7 @@ screenshotPort.onMessage.addListener(function (msg) {
         z-index: 10000;
         background-repeat: no-repeat;
         background-size: cover;
-        background-image: url(`+ cuteImg +`)`;
+        background-image: url(`+ msg.img +`)`;
 
     let close = document.createElement('div');
     close.style = `
@@ -49,14 +39,3 @@ screenshotPort.onMessage.addListener(function (msg) {
     modal.appendChild(close);
     document.body.appendChild(modal);
 });
-
-async function loadModel() {
-    //model = await tf.loadLayersModel('');
-}
-
-function cutify(img) {
-    // Do some magic stuff with the image there
-
-
-    return img;
-}

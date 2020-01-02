@@ -5,7 +5,7 @@
 	"description": "Tool to hide ugly photos of alcohol behind cute photos of kittens.",
 	"background": {
 		"persistent": true,
-		"scripts": ["js/background.js", "js/tf.min.js"]
+		"scripts": ["js/tf.min.js", "js/background.js"]
 	},
 	"icons": { 
 		"48": "icons/icon48.png",
@@ -15,6 +15,7 @@
 		"default_title": "Party Photos Cutifier"
 	},
 	"permissions": ["activeTab"],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	"author": "CIRACU developers",
 	"commands": {
 		"_execute_browser_action": {
