@@ -101,8 +101,8 @@ if __name__ == "__main__":
         if (len(sys.argv) == 2 and (sys.argv[1] == "--batch" or sys.argv[1] == "-b")) \
         or (len(sys.argv) == 3 and (sys.argv[2] == "--batch" or sys.argv[2] == "-b")):
             print("Processing the input folder...")
-            for filename in [x for x in os.listdir("input") if (x.endswith(".jpg")  or x.endswith(".png"))]:
-                file_path = "beer_learning" + os.path.sep + "validation" + os.path.sep +filename
+            for filename in [x for x in os.listdir("input") if (x.endswith(".jpg") or x.endswith(".png"))]:
+                file_path = "input" + os.path.sep + filename
                 input_img = cv2.imread(file_path)
                 # compute this using the NN
                 detected_drinks = detector.get_beer_positions(input_img)
@@ -115,7 +115,7 @@ if __name__ == "__main__":
                 print("Defaulting to the interactive mode as no valid arguments were passed. Try -h for more info...")
 
             input_img = read_image_interactive()
-            if not input_img:
+            if input_img is None:
                 print("bye...")
                 exit()
 
@@ -124,5 +124,3 @@ if __name__ == "__main__":
             replaced = replace_drinks(detected_drinks, input_img)
             cv2.imshow("output", replaced)
             cv2.waitKey(0)
-
-
