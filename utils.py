@@ -56,6 +56,17 @@ def replace_drinks(detected_drinks, input_img):
 
     return input_img
 
+def block_print(verbose):
+    if not verbose:
+        sys.stdout = open(os.devnull, 'w')
+        sys.stderr = open(os.devnull, 'w')
+
+
+def enable_print(verbose):
+    if not verbose:
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
+
 load_kittens()
 
 
