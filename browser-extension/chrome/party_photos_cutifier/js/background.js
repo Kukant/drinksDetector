@@ -12,7 +12,7 @@ function messageRequestHandler(port) {
             if (msg.request === "take") {
                 chrome.tabs.captureVisibleTab(null, {
                     format: "jpeg",
-                    quality: 100
+                    quality: 25
                 }, function (img) {
                     // Defining Upsamplelike class does not work as when implemented according to github
                     // the extension throws the class loaded does not have static className property, but it does.
